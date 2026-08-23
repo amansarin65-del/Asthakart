@@ -1,17 +1,18 @@
 'use client';
 import { useState } from 'react';
-import { Search, ShoppingBag, Heart, Menu, Sparkles, ArrowRight, X, Minus, Plus } from 'lucide-react';
+import { Search, ShoppingBag, Heart, Menu, Sparkles, ArrowRight, X } from 'lucide-react';
 
 const categories = [
   ['🕉️','Hindu','Puja samagri, diyas & idols'],['☪️','Islamic','Prayer, tasbeeh & attar'],['✝️','Christian','Rosaries, candles & gifts'],['☬','Sikh','Devotional & spiritual items'],['☸️','Buddhist','Meditation & prayer items'],['✡️','Jewish','Faith & ceremonial items']
 ];
 
-// Demo catalogue — Shopify will become the source of truth for products, prices and stock.
+// Demo catalogue. Shopify will become the source of truth for products, prices and stock.
+// Product images below are real product-photo URLs for the demo catalogue.
 const products = [
-  ['Sandalwood Incense Sticks','Hindu','₹199','https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=85'],
-  ['Brass Diya Set','Hindu','₹499','https://images.unsplash.com/photo-1604608672516-f1b9d4e4b7d8?auto=format&fit=crop&w=800&q=85'],
-  ['Prayer Beads','Islamic','₹349','https://images.unsplash.com/photo-1599921841143-819065a55cc6?auto=format&fit=crop&w=800&q=85'],
-  ['Wooden Meditation Mala','Buddhist','₹299','https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=85']
+  ['Sandalwood Incense Sticks','Hindu','₹199','https://www.zwende.com/cdn/shop/files/3_288fb52b-4e94-4097-83c2-3592c6c57ede.jpg?v=1726561127&width=1080'],
+  ['Brass Diya Set','Hindu','₹499','https://cdn2.zohoecommerce.com/product-images/IMG_2270.jpg/1323737000005117511/800x800?storefront_domain=www.ayraarts.com'],
+  ['Prayer Beads','Islamic','₹349','https://img.drz.lazcdn.com/g/kf/S301d36d142a7433981820c18cd14581fb.jpg_720x720q80.jpg'],
+  ['Wooden Meditation Mala','Buddhist','₹299','https://www.hugebazaar.com/cdn/shop/products/ML557-3_grande.jpg?v=1665480812']
 ];
 
 export default function Home(){
@@ -22,9 +23,9 @@ export default function Home(){
   const [menuOpen,setMenuOpen]=useState(false);
 
   const filtered=products.filter(p=>(selectedCategory==='All'||p[1]===selectedCategory) && (p[0].toLowerCase().includes(search.toLowerCase())||p[1].toLowerCase().includes(search.toLowerCase())));
-  const addToCart=(product)=>setCart(prev=>[...prev,product]);
+  const addToCart=(product)=>{setCart(prev=>[...prev,product]);setCartOpen(true)};
   const removeFromCart=(index)=>setCart(prev=>prev.filter((_,i)=>i!==index));
-  const chooseCategory=(name)=>{setSelectedCategory(name); document.getElementById('shop')?.scrollIntoView({behavior:'smooth'}); setMenuOpen(false);};
+  const chooseCategory=(name)=>{setSelectedCategory(name);document.getElementById('shop')?.scrollIntoView({behavior:'smooth'});setMenuOpen(false)};
 
   return <main>
     <header>
